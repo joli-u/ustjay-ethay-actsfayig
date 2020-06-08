@@ -17,9 +17,20 @@ def get_fact():
     return facts[0].getText()
 
 
+def pig_latinize(text):
+
+    request_url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
+    response = requests.post(request_url, data={'input_text': text})
+
+    return response.request.url
+
+
 @app.route('/')
 def home():
-    return "FILL ME!"
+    fact = get_fact().strip()
+    url = pig_latinize(fact)
+
+    return url
 
 
 if __name__ == "__main__":
